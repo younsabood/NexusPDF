@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusPDF - Features</title>
+    <style>
+        :root {
+            --primary: #c6a856;
+            --secondary: #8b6b35;
+            --dark: #333333;
+            --light: #f5f5f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .logo {
+            height: 50px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-showcase {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+        
+        .feature-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+        
+        .feature-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .feature-content {
+            width: 50%;
+            padding: 0 3rem;
+        }
+        
+        .feature-image {
+            width: 50%;
+            text-align: center;
+        }
+        
+        .feature-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .feature-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .feature-list {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .qa-feature {
+            background-color: var(--light);
+            padding: 5rem 0;
+        }
+        
+        .qa-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .qa-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 4rem 0;
+        }
+        
+        .qa-step {
+            width: 30%;
+            text-align: center;
+            position: relative;
+        }
+        
+        .qa-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 50px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .compatibility {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .platform {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 180px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon {
+            background-color: rgba(198, 168, 86, 0.15);
+            border: 2px dashed var(--primary);
+            border-radius: 5px;
+            padding: 0.25rem 0.5rem;
+            color: var(--secondary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .feature-row, .feature-row:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .feature-content, .feature-image {
+                width: 100%;
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .qa-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .qa-step {
+                width: 100%;
+                margin-bottom: 3rem;
+            }
+            
+            .qa-step:not(:last-child):after {
+                content: "↓";
+                right: auto;
+                top: auto;
+                bottom: -40px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .feature-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between items-center">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="nexuspdf-features-page.html">Features</a></li>
+                    <li><a href="nexuspdf-download-page.html">Download</a></li>
+                    <li><a href="helper-page.html">Helper</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Powerful AI Features</h1>
+            <p class="page-subtitle">Discover how NexusPDF transforms your documents with cutting-edge AI technology</p>
+        </div>
+    </section>
+
+    <section class="feature-showcase">
+        <div class="container">
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title">Convert Documents to Interactive Q&A Tests</h2>
+                    <p class="feature-subtitle">Transform static content into engaging assessments</p>
+                    <p>NexusPDF's advanced AI engine analyzes your documents and automatically generates intelligent question-and-answer tests from your content. Whether it's PDF files, PowerPoint presentations, or Word documents, our technology understands the context and creates meaningful assessments.</p>
+                    <ul class="feature-list">
+                        <li>Convert any PDF, PPT, or Word document to interactive Q&A tests</li>
+                        <li>AI-powered content analysis ensures relevant and accurate questions</li>
+                        <li>Choose question types: multiple-choice, true/false, fill-in-the-blank, or essay</li>
+                        <li>Customize difficulty levels for different learning objectives</li>
+                        <li>Export tests in various formats or use directly within NexusPDF</li>
+                    </ul>
+                    <a href="nexuspdf-download-page.html" class="btn">Try It Now</a>
+                </div>
+            </div>
+            
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title">Smart Content Analysis</h2>
+                    <p class="feature-subtitle">Understanding your documents at a deeper level</p>
+                    <p>Our AI doesn't just scan text—it comprehends concepts, identifies key information, and recognizes relationships between ideas. This deep understanding enables NexusPDF to extract meaningful content for truly effective question generation.</p>
+                    <ul class="feature-list">
+                        <li>Semantic analysis identifies core concepts and important details</li>
+                        <li>Automatic recognition of diagrams, charts, and images with relevant question generation</li>
+                        <li>Knowledge mapping creates connections between related concepts</li>
+                        <li>Content prioritization focuses questions on essential material</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-row">
+                <div class="feature-content">
+                    <h2 class="feature-title">Advanced Document Management</h2>
+                    <p class="feature-subtitle">Keep everything organized and accessible</p>
+                    <p>NexusPDF provides powerful tools for managing all your documents and generated tests. Search across your entire library, categorize content, and access your files from any device with our cloud synchronization.</p>
+                    <ul class="feature-list">
+                        <li>Intelligent document tagging and categorization</li>
+                        <li>Full-text search with semantic understanding</li>
+                        <li>Version history and change tracking</li>
+                        <li>Secure cloud storage with encryption</li>
+                        <li>Cross-platform synchronization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="qa-feature">
+        <div class="container qa-container">
+            <h2 class="feature-title">How Document to Q&A Works</h2>
+            <p>Converting your static documents into interactive Q&A tests is simple with NexusPDF. Our AI technology does all the heavy lifting.</p>
+            
+            <div class="qa-steps">
+                <div class="qa-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Upload Your Document</h3>
+                    <p>Simply drag and drop your PDF, PowerPoint, or Word document into NexusPDF.</p>
+                </div>
+                <div class="qa-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">AI Analysis</h3>
+                    <p>Our advanced AI analyzes your content to understand concepts, relationships, and key points.</p>
+                </div>
+                <div class="qa-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Generate Q&A</h3>
+                    <p>Review and customize the automatically generated questions and answers to suit your needs.</p>
+                </div>
+            </div>
+            
+            <h3>Platform Compatibility</h3>
+            <p>NexusPDF's document to Q&A conversion works across all our supported platforms.</p>
+            
+            <div class="compatibility">
+                <div class="platform">
+                    <div class="platform-icon">💻</div>
+                    <h4>Windows</h4>
+                    <p>Full functionality</p>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">🍎</div>
+                    <h4>macOS</h4>
+                    <p>Full functionality</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">📱</div>
+                    <h4>iOS</h4>
+                    <p>Core features</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">🤖</div>
+                    <h4>Android</h4>
+                    <p>Core features</p>
+                    <span class="coming-soon">Coming Soon</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem;">
+                <a href="nexuspdf-download-page.html" class="btn">Download Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="footer-title">About NexusPDF</h4>
+                    <p>NexusPDF is revolutionizing how people interact with PDF documents using cutting-edge AI technology to make your PDFs truly smart.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="nexuspdf-features-page.html">Features</a></li>
+                        <li><a href="nexuspdf-download-page.html">Download</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Sales</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report Issues</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NexusPDF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

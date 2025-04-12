@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusPDF - Download</title>
+    <style>
+        :root {
+            --primary: #c6a856;
+            --secondary: #8b6b35;
+            --dark: #333333;
+            --light: #f5f5f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .logo {
+            height: 50px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn-large {
+            padding: 1rem 3rem;
+            font-size: 1.25rem;
+        }
+        
+        .btn-light {
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-light:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-subtitle {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .download-options {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+        
+        .platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .platform-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .platform-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .specs {
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .spec-item {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            width: 150px;
+        }
+        
+        .coming-soon {
+            background-color: rgba(198, 168, 86, 0.15);
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-top: 1rem;
+        }
+        
+        .system-reqs {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .reqs-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .reqs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .req-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .req-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .req-list {
+            list-style: none;
+        }
+        
+        .req-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .req-list li:before {
+            content: "✓";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+        
+        .mobile-note {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: rgba(198, 168, 86, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .reqs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .platforms {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between items-center">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="nexuspdf-features-page.html">Features</a></li>
+                    <li><a href="nexuspdf-download-page.html">Download</a></li>
+                    <li><a href="helper-page.html">Helper</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Download NexusPDF</h1>
+            <p class="page-subtitle">Get started with the smartest PDF application powered by AI</p>
+        </div>
+    </section>
+
+    <section class="download-options">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">Choose Your Platform</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">NexusPDF is available across multiple platforms, allowing you to work with your smart PDFs wherever you go.</p>
+            
+            <div class="platforms">
+                <div class="platform-card">
+                    <div class="card-header">
+                        <div class="platform-icon">💻</div>
+                        <h3 class="platform-name">Windows</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Version:</span>
+                                <span>2.5.1</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Released:</span>
+                                <span>April 2, 2025</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size:</span>
+                                <span>75 MB</span>
+                            </div>
+                        </div>
+                        <a href="NexusPDF.exe" class="btn">Download Now</a>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="card-header">
+                        <div class="platform-icon">🍎</div>
+                        <h3 class="platform-name">macOS</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Version:</span>
+                                <span>-</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Expected:</span>
+                                <span>June 2025</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Status:</span>
+                                <span>Beta Testing</span>
+                            </div>
+                        </div>
+                        <div class="coming-soon">
+                            <p>Coming Soon</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem; font-weight: normal;">Join the waitlist for early access</p>
+                        </div>
+                        <a href="#" class="btn btn-light" style="margin-top: 1rem;">Join Waitlist</a>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="card-header">
+                        <div class="platform-icon">📱</div>
+                        <h3 class="platform-name">iOS</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Version:</span>
+                                <span>-</span>
+                            </div>

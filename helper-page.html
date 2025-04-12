@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusPDF - Installation Requirements</title>
+    <style>
+        :root {
+            --primary: #c6a856;
+            --secondary: #8b6b35;
+            --dark: #333333;
+            --light: #f5f5f5;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .flex {
+            display: flex;
+        }
+        
+        .justify-between {
+            justify-content: space-between;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .logo {
+            height: 50px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .main-content {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+        }
+        
+        .requirements-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .requirements-list {
+            margin-bottom: 2rem;
+        }
+        
+        .requirement-item {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .requirement-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .requirement-info {
+            flex-grow: 1;
+        }
+        
+        .requirement-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .download-actions {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .requirement-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .requirement-item .btn {
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex justify-between items-center">
+            <div class="logo-container">
+                <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="nexuspdf-features-page.html">Features</a></li>
+                    <li><a href="nexuspdf-download-page.html">Download</a></li>
+                    <li><a href="helper-page.html">Helper</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="requirements-section">
+                <h1>Required Components for NexusPDF</h1>
+                <p>Before you can use NexusPDF to its full potential, please install the following necessary components. These programs are essential for NexusPDF to work properly on your system.</p>
+                
+                <div class="alert">
+                    <strong>Important:</strong> All components must be installed for NexusPDF to function correctly. Please download and install each component before launching the application.
+                </div>
+                
+                <h2>Required Components</h2>
+                <div class="requirements-list">
+                    <div class="requirement-item">
+                        <div class="requirement-info">
+                            <h3 class="requirement-title">.NET Framework 4.7.2</h3>
+                            <p>Essential runtime components needed for NexusPDF to execute properly on Windows.</p>
+                        </div>
+                        <a href=".NET Framework 4.7.2.exe" class="btn">Download</a>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-info">
+                            <h3 class="requirement-title">SQL Server Express LocalDB 2022</h3>
+                            <p>Required for local data storage and document indexing functionality.</p>
+                        </div>
+                        <a href="SQL Server Express LocalDB 2022.msi" class="btn">Download</a>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-info">
+                            <h3 class="requirement-title">Visual C++ Redistributable for Visual Studio</h3>
+                            <p>Contains runtime components needed by NexusPDF's PDF processing engine.</p>
+                        </div>
+                        <a href="Visual C++ Redistributable for Visual Studio.exe" class="btn">Download</a>
+                    </div>
+                    
+                    <div class="requirement-item">
+                        <div class="requirement-info">
+                            <h3 class="requirement-title">WebView2</h3>
+                            <p>Required for the application's modern user interface and rendering capabilities.</p>
+                        </div>
+                        <a href="WebView2.exe" class="btn">Download</a>
+                    </div>
+                </div>
+                
+                <div class="download-actions">
+                    <h2>Ready to proceed?</h2>
+                    <p>Once you have installed all the required components, you can download and install NexusPDF.</p>
+                    <a href="NexusPDF.exe" class="btn">Download NexusPDF</a>
+                    <a href="index.html" class="btn">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="footer-title">About NexusPDF</h4>
+                    <p>NexusPDF is revolutionizing how people interact with PDF documents using cutting-edge AI technology to make your PDFs truly smart.</p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="nexuspdf-features-page.html">Features</a></li>
+                        <li><a href="nexuspdf-download-page.html">Download</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Sales</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report Issues</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NexusPDF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
