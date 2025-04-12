@@ -37,7 +37,7 @@
         }
         
         .container {
-            width: 85%;
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -55,7 +55,7 @@
         }
         
         .logo {
-            height: 50px;
+            height: 40px;
         }
         
         nav ul {
@@ -75,16 +75,28 @@
             color: var(--primary);
         }
         
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
         .btn {
             background-color: var(--primary);
             color: var(--white);
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            text-align: center;
         }
         
         .btn:hover {
@@ -93,21 +105,29 @@
         }
         
         .hero {
-            padding: 150px 0 100px;
+            padding: 120px 0 80px;
             background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
         }
         
         .hero-content {
-            width: 70%;
-            padding-right: 3rem;
+            width: 55%;
+            padding-right: 2rem;
         }
         
         .hero-image {
-            width: 50%;
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
         }
         
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
         }
@@ -119,6 +139,13 @@
         p {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+        }
+        
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
         }
         
         .features {
@@ -145,10 +172,12 @@
             border-radius: 8px;
             text-align: center;
             transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .feature-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         .feature-icon {
@@ -232,15 +261,69 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        /* Mobile Responsive Styles */
+        @media (max-width: 992px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 3rem;
+            }
+        }
+        
         @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 99;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
             .hero-content, .hero-image {
                 width: 100%;
+                padding-right: 0;
             }
             
             .flex-col-mobile {
                 flex-direction: column;
             }
             
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
             .feature-grid {
                 grid-template-columns: 1fr;
             }
@@ -249,12 +332,20 @@
                 grid-template-columns: 1fr;
             }
             
-            h1 {
-                font-size: 2.5rem;
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .download-buttons .btn {
+                width: 80%;
+                margin: 0.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
             }
         }
     </style>
@@ -265,7 +356,8 @@
             <div class="logo-container">
                 <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
             </div>
-            <nav>
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="nexuspdf-features-page.html">Features</a></li>
                     <li><a href="nexuspdf-download-page.html">Download</a></li>
@@ -280,8 +372,13 @@
             <div class="hero-content">
                 <h1>Make Your PDFs <span>Smarter</span> With AI</h1>
                 <p>NexusPDF uses advanced artificial intelligence to enhance your PDF experience. Search, analyze, and interact with your documents like never before.</p>
-                <a href="https://www.dropbox.com/scl/fi/ci5wy56jty3eskqjrl3zl/NexusPDF.7z?rlkey=gi4ndhp7t2obhxldt04sxzryc&st=hs1gnwyw&dl=0" class="btn">Download It With Prerequisites</a>
-                <a href="https://www.dropbox.com/scl/fi/b9aic2ylc5gb8c9siatsy/NexusPDF.exe?rlkey=3vm96xywp2v5xx6fdqldboixp&st=8mkto6a6&dl=0" class="btn">Download It Without Prerequisites</a>
+                <div class="hero-buttons">
+                    <a href="https://www.dropbox.com/scl/fi/ci5wy56jty3eskqjrl3zl/NexusPDF.7z?rlkey=gi4ndhp7t2obhxldt04sxzryc&st=hs1gnwyw&dl=0" class="btn">Download With Prerequisites</a>
+                    <a href="https://www.dropbox.com/scl/fi/b9aic2ylc5gb8c9siatsy/NexusPDF.exe?rlkey=3vm96xywp2v5xx6fdqldboixp&st=8mkto6a6&dl=0" class="btn">Download Without Prerequisites</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/400/320" alt="NexusPDF App Screenshot">
             </div>
         </div>
     </section>
@@ -349,6 +446,7 @@
                     <ul class="footer-links">
                         <li><a href="nexuspdf-features-page.html">Features</a></li>
                         <li><a href="nexuspdf-download-page.html">Download</a></li>
+                        <li><a href="helper-page.html">Helper</a></li>
                     </ul>
                 </div>
                 <div>
@@ -375,5 +473,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close mobile menu when clicking on links
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
