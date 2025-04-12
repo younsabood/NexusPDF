@@ -11,6 +11,8 @@
             --dark: #333333;
             --light: #f5f5f5;
             --white: #ffffff;
+            --alert: #f8d7da;
+            --alert-text: #721c24;
         }
         
         * {
@@ -37,7 +39,7 @@
         }
         
         .container {
-            width: 85%;
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -55,7 +57,7 @@
         }
         
         .logo {
-            height: 50px;
+            height: 40px;
         }
         
         nav ul {
@@ -75,10 +77,19 @@
             color: var(--primary);
         }
         
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
         .btn {
             background-color: var(--primary);
             color: var(--white);
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -87,24 +98,27 @@
             cursor: pointer;
             display: inline-block;
             margin: 0.5rem;
+            text-align: center;
         }
         
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .main-content {
-            padding: 150px 0 100px;
+            padding: 120px 0 80px;
             background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 100%);
+            min-height: 100vh;
         }
         
         .requirements-section {
             background-color: var(--white);
-            border-radius: 8px;
-            padding: 2rem;
+            border-radius: 12px;
+            padding: 2.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
         }
         
         h1 {
@@ -116,7 +130,7 @@
         
         h2 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             color: var(--primary);
         }
         
@@ -131,41 +145,53 @@
         
         .requirement-item {
             background-color: var(--light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            padding: 1.8rem;
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
         
         .requirement-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
         }
         
         .requirement-info {
             flex-grow: 1;
+            padding-right: 1.5rem;
         }
         
         .requirement-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--dark);
         }
         
         .download-actions {
             text-align: center;
-            margin: 2rem 0;
+            margin: 3rem 0 1rem;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: 10px;
         }
         
         .alert {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 1rem;
+            background-color: var(--alert);
+            color: var(--alert-text);
+            padding: 1.2rem;
             border-radius: 8px;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid var(--alert-text);
+        }
+        
+        .alert strong {
+            display: block;
+            margin-bottom: 0.5rem;
         }
         
         footer {
@@ -211,22 +237,107 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        @media (max-width: 768px) {
+        /* Tablet Styles */
+        @media (max-width: 992px) {
             .footer-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                row-gap: 3rem;
+            }
+            
+            .requirements-section {
+                padding: 2rem;
+            }
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 99;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.2rem;
+                padding: 1rem 0;
+            }
+            
+            .main-content {
+                padding: 100px 0 60px;
             }
             
             h1 {
                 font-size: 2rem;
+                text-align: center;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                text-align: center;
             }
             
             .requirement-item {
                 flex-direction: column;
                 text-align: center;
+                padding: 1.5rem;
+            }
+            
+            .requirement-info {
+                padding-right: 0;
+                margin-bottom: 1rem;
             }
             
             .requirement-item .btn {
-                margin-top: 1rem;
+                width: 100%;
+                margin: 0.8rem 0 0;
+            }
+        }
+        
+        /* Small Mobile Styles */
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-section {
+                padding: 1.5rem;
+                border-radius: 8px;
+            }
+            
+            .btn {
+                width: 90%;
+                margin: 0.5rem auto;
+                padding: 0.75rem 1rem;
+            }
+            
+            .download-actions {
+                padding: 1.5rem 1rem;
+            }
+            
+            .requirement-title {
+                font-size: 1.2rem;
+            }
+            
+            .alert {
+                padding: 1rem;
+                text-align: left;
             }
         }
     </style>
@@ -237,7 +348,8 @@
             <div class="logo-container">
                 <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
             </div>
-            <nav>
+            <button class="mobile-menu-btn">☰</button>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="nexuspdf-features-page.html">Features</a></li>
@@ -316,6 +428,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="nexuspdf-features-page.html">Features</a></li>
                         <li><a href="nexuspdf-download-page.html">Download</a></li>
+                        <li><a href="helper-page.html">Helper</a></li>
                     </ul>
                 </div>
                 <div>
@@ -342,5 +455,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Close mobile menu when clicking on links
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
