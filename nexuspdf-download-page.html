@@ -301,21 +301,109 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .platforms {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 3rem;
+            }
+        }
+        
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                left: 0;
+                top: 70px;
+                gap: 0;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                height: auto;
+                padding: 1rem 0;
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
             .reqs-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+            
+            .platforms {
+                grid-template-columns: 1fr;
+            }
+            
+            .platform-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                width: 90%;
             }
             
             .footer-grid {
                 grid-template-columns: 1fr;
             }
             
-            .page-title {
-                font-size: 2.5rem;
+            .page-header {
+                padding: 120px 0 60px;
             }
             
-            .platforms {
-                grid-template-columns: 1fr;
+            .download-options, .system-reqs {
+                padding: 3rem 0;
+            }
+            
+            .spec-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .spec-label {
+                width: 100%;
+                margin-bottom: 0.25rem;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
             }
         }
     </style>
@@ -328,11 +416,12 @@
                     <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo">
                 </a>
             </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
             <nav>
-                <ul>
+                <ul id="mainMenu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="nexuspdf-features-page.html">Features</a></li>
-                    <li><a href="nexuspdf-download-page.html">Download</a></li>
+                    <li><a href="nexuspdf-download-page.html" class="active">Download</a></li>
                     <li><a href="helper-page.html">Helper</a></li>
                 </ul>
             </nav>
@@ -413,5 +502,168 @@
                         <div class="specs">
                             <div class="spec-item">
                                 <span class="spec-label">Version:</span>
+                                <span>1.0.0</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Released:</span>
+                                <span>March 15, 2025</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Size:</span>
+                                <span>45 MB</span>
+                            </div>
+                        </div>
+                        <a href="#" class="btn">Download on App Store</a>
+                    </div>
+                </div>
+                
+                <div class="platform-card">
+                    <div class="card-header">
+                        <div class="platform-icon">🤖</div>
+                        <h3 class="platform-name">Android</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Version:</span>
                                 <span>-</span>
                             </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Expected:</span>
+                                <span>July 2025</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Status:</span>
+                                <span>In Development</span>
+                            </div>
+                        </div>
+                        <div class="coming-soon">
+                            <p>Coming Soon</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem; font-weight: normal;">Join the waitlist for early access</p>
+                        </div>
+                        <a href="#" class="btn btn-light" style="margin-top: 1rem;">Join Waitlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="system-reqs">
+        <div class="container reqs-container">
+            <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">System Requirements</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">To ensure the best experience with NexusPDF, please make sure your device meets these requirements:</p>
+            
+            <div class="reqs-grid">
+                <div class="req-card">
+                    <h3 class="req-title">💻 Windows Requirements</h3>
+                    <ul class="req-list">
+                        <li>Windows 10 or 11 (64-bit)</li>
+                        <li>4GB RAM (8GB recommended)</li>
+                        <li>500MB free disk space</li>
+                        <li>Intel Core i3 or AMD equivalent</li>
+                        <li>Internet connection for AI features</li>
+                    </ul>
+                </div>
+                
+                <div class="req-card">
+                    <h3 class="req-title">🍎 macOS Requirements</h3>
+                    <ul class="req-list">
+                        <li>macOS 11.0 (Big Sur) or later</li>
+                        <li>4GB RAM (8GB recommended)</li>
+                        <li>500MB free disk space</li>
+                        <li>Intel or Apple Silicon processor</li>
+                        <li>Internet connection for AI features</li>
+                    </ul>
+                </div>
+                
+                <div class="req-card">
+                    <h3 class="req-title">📱 iOS Requirements</h3>
+                    <ul class="req-list">
+                        <li>iOS 15.0 or later</li>
+                        <li>Compatible with iPhone and iPad</li>
+                        <li>100MB free space</li>
+                        <li>Internet connection for AI features</li>
+                    </ul>
+                </div>
+                
+                <div class="req-card">
+                    <h3 class="req-title">🤖 Android Requirements</h3>
+                    <ul class="req-list">
+                        <li>Android 10.0 or later</li>
+                        <li>3GB RAM</li>
+                        <li>100MB free space</li>
+                        <li>Internet connection for AI features</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mobile-note">
+                <h3 style="margin-bottom: 1rem;">Mobile App Features</h3>
+                <p>Please note that the mobile versions offer a streamlined experience with core functionality. For advanced document editing and AI-powered analysis, we recommend using our desktop versions.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="svgviewer-output.png" alt="NexusPDF Logo" class="logo" style="margin-bottom: 1rem;">
+                    <p>NexusPDF transforms how you work with documents using advanced AI technology to make document management smarter, faster, and more intuitive.</p>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="nexuspdf-features-page.html">Features</a></li>
+                        <li><a href="nexuspdf-download-page.html">Download</a></li>
+                        <li><a href="helper-page.html">Helper</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">User Guide</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-title">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Report a Bug</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 NexusPDF. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainMenu = document.getElementById('mainMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav') && !e.target.closest('.menu-toggle') && mainMenu.classList.contains('active')) {
+                mainMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
