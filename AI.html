@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Box AI Enterprise Eval</title>
+    <style>
+        :root {
+            --eastern-blue: #1e81b0;
+            --green-white: #eeeee4;
+            --burnt-sienna: #e28743;
+            --tacao: #eab676;
+            --glacier: #76b5c5;
+            --eternity: #21130d;
+            --burnt-umber: #873e23;
+            --powder-blue: #abdbe3;
+            --catalina-blue: #063970;
+            --chathams-blue: #154c79;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #c6a856;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.05) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .chart-title {
+            color: var(--eternity);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--eternity);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend-dot.preview {
+            background: var(--glacier);
+        }
+
+        .legend-dot.pro {
+            background: var(--tacao);
+        }
+
+        .chart-area {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+        }
+
+        .y-axis {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 50px;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+
+        .y-label {
+            color: var(--powder-blue);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        .bars-container {
+            margin-left: 60px;
+            height: 100%;
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .bar-group {
+            display: flex;
+            gap: 8px;
+            align-items: end;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 45px;
+            border-radius: 8px 8px 4px 4px;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .bar.preview {
+            background: linear-gradient(180deg, var(--glacier) 0%, var(--powder-blue) 100%);
+        }
+
+        .bar.pro {
+            background: linear-gradient(180deg, var(--tacao) 0%, var(--burnt-sienna) 100%);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--green-white);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .x-labels {
+            display: flex;
+            justify-content: space-around;
+            margin-left: 60px;
+            margin-top: 20px;
+        }
+
+        .x-label {
+            color: var(--eternity);
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 120px;
+            line-height: 1.3;
+        }
+
+        /* Bar heights based on percentages - scaled properly from 60-90 range */
+        .bar[data-value="80"] { height: 160px; } /* 80% = 160px */
+        .bar[data-value="84"] { height: 192px; } /* 84% = 192px */
+        .bar[data-value="81"] { height: 168px; } /* 81% = 168px */
+        .bar[data-value="82"] { height: 176px; } /* 82% = 176px */
+        .bar[data-value="83"] { height: 184px; } /* 83% = 184px */
+        .bar[data-value="86"] { height: 208px; } /* 86% = 208px */
+
+        @media (max-width: 768px) {
+            .chart-container {
+                padding: 20px;
+            }
+            
+            .chart-title {
+                font-size: 2rem;
+            }
+            
+            .legend {
+                gap: 15px;
+            }
+            
+            .bar {
+                width: 35px;
+            }
+            
+            .bar-group {
+                min-width: 90px;
+                gap: 6px;
+            }
+            
+            .x-label {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chart-title {
+                font-size: 1.5rem;
+            }
+            
+            .chart-area {
+                height: 300px;
+            }
+            
+            .bars-container {
+                margin-left: 40px;
+            }
+            
+            .x-labels {
+                margin-left: 40px;
+            }
+            
+            .y-axis {
+                width: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <h1 class="chart-title">Full Box AI Enterprise Eval</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot preview"></div>
+                <span>Gemini 2.5 Pro Preview (I/O edition)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot pro"></div>
+                <span>Gemini 2.5 Pro</span>
+            </div>
+        </div>
+
+        <div class="chart-area">
+            <div class="y-axis">
+                <div class="y-label">90</div>
+                <div class="y-label">80</div>
+                <div class="y-label">70</div>
+                <div class="y-label">60</div>
+            </div>
+            
+            <div class="bars-container">
+                <div class="bar-group">
+                    <div class="bar preview" data-value="80">
+                        <div class="bar-value">80%</div>
+                    </div>
+                    <div class="bar pro" data-value="80">
+                        <div class="bar-value">80%</div>
+                    </div>
+                </div>
+                
+                <div class="bar-group">
+                    <div class="bar preview" data-value="84">
+                        <div class="bar-value">84%</div>
+                    </div>
+                    <div class="bar pro" data-value="81">
+                        <div class="bar-value">81%</div>
+                    </div>
+                </div>
+                
+                <div class="bar-group">
+                    <div class="bar preview" data-value="82">
+                        <div class="bar-value">82%</div>
+                    </div>
+                    <div class="bar pro" data-value="83">
+                        <div class="bar-value">83%</div>
+                    </div>
+                </div>
+                
+                <div class="bar-group">
+                    <div class="bar preview" data-value="86">
+                        <div class="bar-value">86%</div>
+                    </div>
+                    <div class="bar pro" data-value="82">
+                        <div class="bar-value">82%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="x-labels">
+            <div class="x-label"><strong>Single Doc<br>Q&A</strong></div>
+            <div class="x-label"><strong>Multi-Doc<br>Q&A</strong></div>
+            <div class="x-label"><strong>Data Extraction<br>(Hard)</strong></div>
+            <div class="x-label"><strong>Data Extraction<br>(Full)</strong></div>
+        </div>
+    </div>
+</body>
+</html>

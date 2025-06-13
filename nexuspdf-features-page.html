@@ -140,6 +140,38 @@
             flex-direction: row-reverse;
         }
         
+        /* Full width styling for the last feature row */
+        .feature-row:last-child {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(198, 168, 86, 0.05) 0%, rgba(139, 107, 53, 0.05) 100%);
+        }
+        
+        .feature-row:last-child .feature-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-row:last-child .feature-image {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+        }
+        
+        .feature-row:last-child .feature-image iframe {
+            width: 100%;
+            min-height: 800px;
+            border: none;
+            border-radius: 0;
+        }
+        
         .feature-content {
             width: 50%;
             padding: 0 3rem;
@@ -417,6 +449,21 @@
                 order: -1;
             }
             
+            /* Mobile adjustments for full-width last feature */
+            .feature-row:last-child {
+                margin-left: 0;
+                width: 100%;
+                padding: 2rem 0;
+            }
+            
+            .feature-row:last-child .feature-content {
+                padding: 0 1rem;
+            }
+            
+            .feature-row:last-child .feature-image iframe {
+                min-height: 600px;
+            }
+            
             .qa-steps {
                 flex-direction: column;
                 align-items: center;
@@ -541,50 +588,62 @@
                     </ul>
                     <a href="nexuspdf-download-page.html" class="btn">Try It Now</a>
                 </div>
-                <div class="feature-image">
-                    <img src="/api/placeholder/500/350" alt="Interactive Q&A Tests" class="feature-img">
+                <div class="feature-image" id="feature-image-1" style="position: relative; height: 350px; overflow: hidden;">
+                    <img src="2.png" alt="Interactive Q&A Tests" class="feature-img" style="position: absolute; width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <img src="22.png" alt="Flash Card Generation" class="feature-img" style="position: absolute; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <!-- Navigation dots -->
+                    <div class="nav-dots" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex;">
+                        <span class="dot" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ddd; margin: 0 5px; cursor: pointer;" data-index="0"></span>
+                        <span class="dot" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ddd; margin: 0 5px; cursor: pointer;" data-index="1"></span>
+                    </div>
                 </div>
             </div>
-            
+        
             <div class="feature-row">
                 <div class="feature-content">
-                    <h2 class="feature-title">Smart Content Analysis</h2>
-                    <p class="feature-subtitle">Understanding your documents at a deeper level</p>
-                    <p>Our AI doesn't just scan text—it comprehends concepts, identifies key information, and recognizes relationships between ideas. This deep understanding enables NexusPDF to extract meaningful content for truly effective question generation.</p>
+                    <h2 class="feature-title">Flash Card Generation</h2>
+                    <p class="feature-subtitle">Transform your documents into study tools</p>
+                    <p>Our AI doesn't just scan text—it creates custom flash cards by identifying key concepts, terms, and definitions. With NexusPDF's flash card generation, you can study smarter, not harder.</p>
                     <ul class="feature-list">
-                        <li>Semantic analysis identifies core concepts and important details</li>
-                        <li>Automatic recognition of diagrams, charts, and images with relevant question generation</li>
-                        <li>Knowledge mapping creates connections between related concepts</li>
-                        <li>Content prioritization focuses questions on essential material</li>
+                        <li>Automatic extraction of key terms and definitions</li>
+                        <li>Flash cards tailored to your study needs</li>
+                        <li>Supports multiple question types for diverse learning approaches</li>
+                        <li>Flash card sets are ready to use with minimal setup</li>
                     </ul>
                     <a href="nexuspdf-download-page.html" class="btn">Learn More</a>
                 </div>
-                <div class="feature-image">
-                    <img src="/api/placeholder/500/350" alt="Smart Content Analysis" class="feature-img">
+                <div class="feature-image" id="feature-image-2" style="position: relative; height: 350px; overflow: hidden;">
+                    <img src="1.png" alt="Interactive Q&A Tests" class="feature-img" style="position: absolute; width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <img src="11.png" alt="Flash Card Generation" class="feature-img" style="position: absolute; width: 100%; height: 100%; object-fit: cover; display: none;">
+                    <!-- Navigation dots -->
+                    <div class="nav-dots" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex;">
+                        <span class="dot" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ddd; margin: 0 5px; cursor: pointer;" data-index="0"></span>
+                        <span class="dot" style="width: 10px; height: 10px; border-radius: 50%; background-color: #ddd; margin: 0 5px; cursor: pointer;" data-index="1"></span>
+                    </div>
                 </div>
             </div>
-            
             <div class="feature-row">
                 <div class="feature-content">
-                    <h2 class="feature-title">Advanced Document Management</h2>
-                    <p class="feature-subtitle">Keep everything organized and accessible</p>
-                    <p>NexusPDF provides powerful tools for managing all your documents and generated tests. Search across your entire library, categorize content, and access your files from any device with our cloud synchronization.</p>
+                    <h2 class="feature-title">Gemini 2.5 Pro AI</h2>
+                    <p class="feature-subtitle">Revolutionizing document management with cutting-edge AI</p>
+                    <p>NexusPDF's Gemini 2.5 Pro AI offers advanced tools for efficient document organization, enhanced search functionality, and seamless cross-platform synchronization. Manage and access your documents smarter and faster.</p>
                     <ul class="feature-list">
-                        <li>Intelligent document tagging and categorization</li>
-                        <li>Full-text search with semantic understanding</li>
-                        <li>Version history and change tracking</li>
-                        <li>Secure cloud storage with encryption</li>
-                        <li>Cross-platform synchronization</li>
+                        AI-powered tagging and categorization for quick access
+                        Advanced search with natural language processing
+                        Track versions and changes with intelligent history management
+                        End-to-end encryption for secure cloud storage
+                        Fully synchronized across all devices and platforms
                     </ul>
                     <a href="nexuspdf-download-page.html" class="btn">See How It Works</a>
                 </div>
                 <div class="feature-image">
-                    <img src="/api/placeholder/500/350" alt="Document Management" class="feature-img">
+                    <iframe src="AI.html" width="100%" height="500px"></iframe>
                 </div>
             </div>
         </div>
-    </section>
+            
 
+    </section>
     <section class="qa-feature">
         <div class="container qa-container">
             <h2 class="feature-title">How Document to Q&A Works</h2>
@@ -638,34 +697,6 @@
             </div>
         </div>
     </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="feature-title" style="text-align: center; margin-bottom: 1rem;">What Our Users Say</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">See how NexusPDF is transforming the way educators and professionals work with documents</p>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"NexusPDF has completely transformed how I create assessments for my students. What used to take hours now takes minutes, and the quality of the questions is impressive."</p>
-                    <p class="testimonial-author">Dr. Sarah Johnson</p>
-                    <p class="author-title">Professor of Computer Science</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"The document to Q&A feature has been a game-changer for our company's training program. We can easily convert our existing materials into interactive learning tools."</p>
-                    <p class="testimonial-author">Michael Chen</p>
-                    <p class="author-title">Head of Corporate Training</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"I've tried several PDF tools, but NexusPDF's AI capabilities are unmatched. The semantic analysis truly understands the content and generates thoughtful questions."</p>
-                    <p class="testimonial-author">Emma Rodriguez</p>
-                    <p class="author-title">Educational Consultant</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="cta-section">
         <div class="container">
             <h2 class="cta-title">Ready to transform your documents?</h2>
@@ -690,24 +721,6 @@
                         <li><a href="#">Pricing</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="footer-title">Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">API</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="footer-title">Contact</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Sales</a></li>
-                        <li><a href="#">Feedback</a></li>
-                        <li><a href="#">Report Issues</a></li>
-                    </ul>
-                </div>
             </div>
             <div class="copyright">
                 <p>&copy; 2025 NexusPDF. All rights reserved.</p>
@@ -716,7 +729,42 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+     // Inline JavaScript for image slider with navigation dots
+     const images1 = document.querySelectorAll('#feature-image-1 .feature-img');
+    const dots1 = document.querySelectorAll('#feature-image-1 .dot');
+    
+    const images2 = document.querySelectorAll('#feature-image-2 .feature-img');
+    const dots2 = document.querySelectorAll('#feature-image-2 .dot');
+    
+    // Function to switch images based on dot click
+    function changeImage(images, dots, index) {
+        images.forEach((img, i) => {
+            img.style.display = (i === index) ? 'block' : 'none';
+        });
+        dots.forEach((dot, i) => {
+            dot.style.backgroundColor = (i === index) ? '#333' : '#ddd';
+        });
+    }
+    
+    // Set initial display for both feature-image sections
+    changeImage(images1, dots1, 0);
+    changeImage(images2, dots2, 0);
+    
+    // Add click event to dots for the first feature-image
+    dots1.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'));
+            changeImage(images1, dots1, index);
+        });
+    });
+    
+    // Add click event to dots for the second feature-image
+    dots2.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.getAttribute('data-index'));
+            changeImage(images2, dots2, index);
+        });
+    });
         const menuToggle = document.getElementById('menuToggle');
         const mainMenu = document.getElementById('mainMenu');
         
